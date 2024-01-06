@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-// Structure definition for Order
 struct Order {
     int orderId;
     char customerName[50];
@@ -9,7 +8,6 @@ struct Order {
     float totalCost;
 };
 
-// Function to load orders from "orders.txt" file
 void loadOrders(struct Order *orders, int size) {
     FILE *file = fopen("orders.txt", "r");
     if (file != NULL) {
@@ -24,7 +22,6 @@ void loadOrders(struct Order *orders, int size) {
     }
 }
 
-// Function to input order data from users and save to "orders.txt" file
 void inputOrderData(struct Order *order) {
     printf("Enter Order ID: ");
     scanf("%d", &order->orderId);
@@ -52,14 +49,12 @@ void inputOrderData(struct Order *order) {
     }
 }
 
-// Function to calculate total cost for each order
 void calculateTotalCost(struct Order *orders, int size) {
     for (int i = 0; i < size; i++) {
         orders[i].totalCost = orders[i].quantity * orders[i].totalCost;
     }
 }
 
-// Function to display orders
 void displayOrders(struct Order *orders, int size) {
     printf("%-10s%-20s%-20s%-10s%-15s\n", "Order ID", "Customer Name", "Product Name", "Quantity", "Total Cost");
     for (int i = 0; i < size; i++) {
@@ -71,19 +66,15 @@ void displayOrders(struct Order *orders, int size) {
 int main() {
     struct Order orders[30];
 
-    // Uncomment the line below to load orders from "orders.txt" file
-    // loadOrders(orders, 30);
+    loadOrders(orders, 30);
 
-    // Input order data for each order
     for (int i = 0; i < 30; i++) {
         printf("\nEnter details for Order %d:\n", i + 1);
         inputOrderData(&orders[i]);
     }
 
-    // Calculate total cost for each order
     calculateTotalCost(orders, 30);
 
-    // Display orders
     displayOrders(orders, 30);
 
     return 0;
